@@ -3,14 +3,10 @@ clear
 echo "============================================"
 echo "WordPress Install Script"
 echo "============================================"
-echo "Database Name: "
-read -e dbname
-echo "Database User: "
-read -e dbuser
-echo "Database Password: "
-read -s dbpass
-echo "run install? (y/n)"
-read -e run
+read -p "Database Name: " dbname
+read -p "Database User: " dbuser
+read -p "Database Password: " dbpass
+read -p "DO YOU WANT TO RUN THE INSTALLATION? (y/n): " run
 if [ "$run" == n ] ; then
 exit
 else
@@ -57,8 +53,10 @@ rm latest.tar.gz
 echo "========================="
 echo "Set file/folder permission for account"
 echo "account:"
-read -e useraccount
-chown -R $useraccount:$useraccount *  
+read -p "account: " useraccount
+if [ "$useraccount" != "" ] ; then
+  chown -R $useraccount:$useraccount * 
+fi 
 echo "========================="
 echo "Installation is complete."
 echo "========================="
